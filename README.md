@@ -4,7 +4,7 @@
 
 Listen to "Gehra Hua" from the upcoming movie **Dhurandhar** with Arijit Singh & Armaan Khan.
 
-![Dhurandhar Player Preview](https://via.placeholder.com/800x400/1a0033/ffffff?text=Gehra+Hua+-+Web+Player)
+![Project Poster](poster.png)
 
 ## ✨ Features
 

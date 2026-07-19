@@ -195,14 +195,21 @@ let curLineIdx = -1;
 
 function updateLyrics(time) {
   if (!lyricsData.length) return;
-  const idx = lyricsData.findIndex(l => time >= l.start && time < l.end);
-  if (idx === curLineIdx) return;
+
+  // Find current or nearest line with tolerance
+  let idx = lyricsData.findIndex(l => time >= l.start && time <= l.end + 1.0);
+  if (idx === -1) {
+    idx = lyricsData.findIndex(l => l.start > time);
+    if (idx > 0) idx--;
+  }
+
+  if (idx === curLineIdx || idx < 0) return;
   curLineIdx = idx;
 
   ghostUp.textContent = idx > 0 ? lyricsData[idx - 1].text : '';
-  lyricHi.textContent  = idx >= 0 ? lyricsData[idx].text : '';
-  lyricEn.textContent  = idx >= 0 && translations[idx] ? translations[idx] : '';
-  ghostDn.textContent  = idx >= 0 && idx < lyricsData.length - 1 ? lyricsData[idx + 1].text : '';
+  lyricHi.textContent  = lyricsData[idx].text;
+  lyricEn.textContent  = idx < translations.length ? translations[idx] : '';
+  ghostDn.textContent  = idx < lyricsData.length - 1 ? lyricsData[idx + 1].text : '';
 
   const note = notes[idx];
   lyricNote.textContent = note || '';

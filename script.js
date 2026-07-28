@@ -185,7 +185,7 @@ const notes = {
 // ════════════════════════════════════════════
 let lyricsData = [];
 
-fetch('gehra_hua_lyrics.srt')
+fetch('Gehra_Hua.srt')
   .then(r => r.text())
   .then(raw => { lyricsData = parseSRT(raw); })
   .catch(() => {});
